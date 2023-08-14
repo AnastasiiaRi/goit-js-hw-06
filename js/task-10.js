@@ -17,7 +17,7 @@ const createBoxes = () => {
   const max = Number(refs.input.getAttribute('max'));
   const step = Number(refs.input.getAttribute('step'));
   if(refs.input.value <= max && refs.input.value >= min) {
-  for (let i = min-1; i < refs.input.value; i += step) {
+  for (let i = 0; i < refs.input.value; i += step) {
     const box = document.createElement("div");
     box.style.width = `${boxSize}px`;
     box.style.height = `${boxSize}px`;
