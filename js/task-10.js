@@ -13,21 +13,27 @@ const refs = {
 const createBoxes = () => {
   let boxSize = 30;
   const newBoxes = [];
-
-  for (let i = 0; i < refs.input.value; i += 1) {
+  const min = Number(refs.input.getAttribute('min'));
+  const max = Number(refs.input.getAttribute('max'));
+  const step = Number(refs.input.getAttribute('step'));
+  if(refs.input.value <= max && refs.input.value >= min) {
+  for (let i = min-1; i < refs.input.value; i += step) {
     const box = document.createElement("div");
     box.style.width = `${boxSize}px`;
     box.style.height = `${boxSize}px`;
     box.style.backgroundColor = getRandomHexColor();
     boxSize += 10;
-
     newBoxes.push(box);
   }
+}else{alert('Введите число от 1 до 100')}
+  refs.boxes.innerHTML = "";
   return refs.boxes.append(...newBoxes);
 };
 
-const resetBoxes = () => (refs.boxes.innerHTML = "");
+const destroyBoxes = () => (
+  refs.boxes.innerHTML = "",
+  refs.input.value = "");
 
 refs.buttonCreate.addEventListener("click", createBoxes);
 
-refs.buttonDestroy.addEventListener("click", resetBoxes);
+refs.buttonDestroy.addEventListener("click", destroyBoxes);
