@@ -26,7 +26,6 @@ const createBoxes = () => {
     newBoxes.push(box);
   }
 }else{alert('Введите число от ${min} до ${max}')}
-  refs.boxes.innerHTML = "";
   return refs.boxes.append(...newBoxes);
 };
 
